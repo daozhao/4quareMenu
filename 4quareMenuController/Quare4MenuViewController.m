@@ -47,17 +47,29 @@
     NSLog(@"btnClick");
     
     CGFloat r = self->rotation == 0.0f ? -20.0f : 0.0f;
-    [UIView animateWithDuration:0.3f
+    CGFloat xPosition = self->rotation == 0.0f ? -40.0f : 40.0f;
+    CGFloat yPosition = self->rotation == 0.0f ? -80.0f : 80.0f;
+    __block CGRect rect;
+    rect = CGRectMake(0, 20, 320, 460);
+    rect =  0.0f == self->rotation ? CGRectOffset(rect, -40, -80) : rect;
+    
+    [UIView animateWithDuration:2.3f
                      animations:^{
                          self.view.transform = CGAffineTransformMakeRotation(r);
+                         self.view.frame = rect;
+                         
                          self.topLeftController.view.transform = CGAffineTransformMakeRotation(-r);
+                         
                          self.topRightController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomLeftController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomRightController.view.transform = CGAffineTransformMakeRotation(-r);
                      }
                      completion:^(BOOL finished) {
                          self.view.transform = CGAffineTransformMakeRotation(r);
+                         self.view.frame =  rect; //CGRectOffset(rect,xPosition, yPosition);
+                         
                          self.topLeftController.view.transform = CGAffineTransformMakeRotation(-r);
+                         
                          self.topRightController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomLeftController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomRightController.view.transform = CGAffineTransformMakeRotation(-r);
@@ -86,7 +98,7 @@
     [self.view addSubview:self.bottomRightView];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame = CGRectMake(150, 220, 40, 40);
+    btn.frame = CGRectMake(140, 210, 40, 40);
     [btn addTarget:self action:@selector(btnClickClick:) forControlEvents:UIControlEventTouchUpInside];
 //    btn.backgroundColor = [UIColor whiteColor];
 //    btn.titleLabel.text = @"click";

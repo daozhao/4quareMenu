@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define RECTPRINTSTR @" Rect(X:%.0f Y:%.0f Width:%.0f height:%.0f) "
+#define RECTSTRUCT(rect) rect.origin.x,rect.origin.y,rect.size.width,rect.size.height
+#define RECTLOG(rect,info, ...) NSLog(@"%@:%d:" info RECTPRINTSTR,[[NSString stringWithUTF8String:__FILE__] lastPathComponent],__LINE__,##__VA_ARGS__,RECTSTRUCT(rect))
+
 @interface Quare4MenuViewController : UIViewController{
 
     CGFloat rotation;
