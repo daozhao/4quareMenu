@@ -71,13 +71,13 @@
     [super loadView];
     
     self.view.backgroundColor = [UIColor blackColor];
-    self.topLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 230)];
+    self.topLeftView = [[UIView alloc]initWithFrame:CGRectMake(-160, -230, 320, 460)];
     self.topLeftView.clipsToBounds = YES;
-    self.topRightView = [[UIView alloc]initWithFrame:CGRectMake(160, 0, 160, 230)];
+    self.topRightView = [[UIView alloc]initWithFrame:CGRectMake(160, -230, 320, 460)];
     self.topRightView.clipsToBounds = YES;
-    self.bottomLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 230, 160, 230)];
+    self.bottomLeftView = [[UIView alloc]initWithFrame:CGRectMake(-160, 230, 320, 460)];
     self.bottomLeftView.clipsToBounds = YES;
-    self.bottomRightView = [[UIView alloc]initWithFrame:CGRectMake(160, 230, 160, 230)];
+    self.bottomRightView = [[UIView alloc]initWithFrame:CGRectMake(160, 230, 320, 460)];
     self.bottomRightView.clipsToBounds = YES;
     
     [self.view addSubview:self.topLeftView];
@@ -102,14 +102,15 @@
     
     [self.topLeftView addSubview:self.topLeftController.view];
     self.topLeftController.view.userInteractionEnabled = NO;
+    self.topLeftController.view.frame = CGRectMake(160, 230, 320, 460);
     
     [self.topRightView addSubview:self.topRightController.view];
     self.topRightController.view.userInteractionEnabled = NO;
-    self.topRightController.view.frame = CGRectMake(-160, 0, 320, 460);
+    self.topRightController.view.frame = CGRectMake(-160, 230, 320, 460);
     
     [self.bottomLeftView addSubview:self.bottomLeftController.view];
     self.bottomLeftController.view.userInteractionEnabled = NO;
-    self.bottomLeftController.view.frame = CGRectMake(0, -230, 320, 460);
+    self.bottomLeftController.view.frame = CGRectMake(160, -230, 320, 460);
     
     [self.bottomRightView addSubview:self.bottomRightController.view];
     self.bottomRightController.view.userInteractionEnabled = NO;
