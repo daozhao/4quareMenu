@@ -8,6 +8,12 @@
 
 #import "AppDelegate.h"
 
+#import "view1ViewController.h"
+#import "view2ViewController.h"
+#import "view3ViewController.h"
+#import "view4ViewController.h"
+#import "Quare4MenuViewController.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -15,6 +21,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    view1ViewController *vc1 = [[view1ViewController alloc] initWithNibName:@"view1ViewController" bundle:nil];
+    view1ViewController *vc2 = [[view1ViewController alloc] initWithNibName:@"view2ViewController" bundle:nil];
+    view1ViewController *vc3 = [[view1ViewController alloc] initWithNibName:@"view3ViewController" bundle:nil];
+    view1ViewController *vc4 = [[view1ViewController alloc] initWithNibName:@"view4ViewController" bundle:nil];
+    
+    Quare4MenuViewController *q4mc = [[Quare4MenuViewController alloc]initWithTopLeft:vc1 TopRight:vc2 bottomLeft:vc3 bottomRight:vc4];
+    
+    
+    [self.window addSubview:q4mc.view];
     [self.window makeKeyAndVisible];
     return YES;
 }

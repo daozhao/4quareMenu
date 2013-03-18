@@ -21,6 +21,15 @@
 		443C821E16F6A56900DE5D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443C81FF16F6A56800DE5D85 /* Foundation.framework */; };
 		443C822616F6A56900DE5D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 443C822416F6A56900DE5D85 /* InfoPlist.strings */; };
 		443C822916F6A56900DE5D85 /* _quareMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C822816F6A56900DE5D85 /* _quareMenuTests.m */; };
+		443C823516F6A62E00DE5D85 /* view1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C823316F6A62E00DE5D85 /* view1ViewController.m */; };
+		443C823616F6A62E00DE5D85 /* view1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443C823416F6A62E00DE5D85 /* view1ViewController.xib */; };
+		443C823A16F6A66000DE5D85 /* view2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C823816F6A66000DE5D85 /* view2ViewController.m */; };
+		443C823B16F6A66000DE5D85 /* view2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443C823916F6A66000DE5D85 /* view2ViewController.xib */; };
+		443C823F16F6A67F00DE5D85 /* view3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C823D16F6A67F00DE5D85 /* view3ViewController.m */; };
+		443C824016F6A67F00DE5D85 /* view3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443C823E16F6A67F00DE5D85 /* view3ViewController.xib */; };
+		443C824416F6A69900DE5D85 /* view4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C824216F6A69900DE5D85 /* view4ViewController.m */; };
+		443C824516F6A69900DE5D85 /* view4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443C824316F6A69900DE5D85 /* view4ViewController.xib */; };
+		443C824816F6A6E000DE5D85 /* Quare4MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C824716F6A6E000DE5D85 /* Quare4MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +62,20 @@
 		443C822516F6A56900DE5D85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		443C822716F6A56900DE5D85 /* _quareMenuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _quareMenuTests.h; sourceTree = "<group>"; };
 		443C822816F6A56900DE5D85 /* _quareMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _quareMenuTests.m; sourceTree = "<group>"; };
+		443C823216F6A62E00DE5D85 /* view1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view1ViewController.h; sourceTree = "<group>"; };
+		443C823316F6A62E00DE5D85 /* view1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = view1ViewController.m; sourceTree = "<group>"; };
+		443C823416F6A62E00DE5D85 /* view1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = view1ViewController.xib; sourceTree = "<group>"; };
+		443C823716F6A66000DE5D85 /* view2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view2ViewController.h; sourceTree = "<group>"; };
+		443C823816F6A66000DE5D85 /* view2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = view2ViewController.m; sourceTree = "<group>"; };
+		443C823916F6A66000DE5D85 /* view2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = view2ViewController.xib; sourceTree = "<group>"; };
+		443C823C16F6A67F00DE5D85 /* view3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view3ViewController.h; sourceTree = "<group>"; };
+		443C823D16F6A67F00DE5D85 /* view3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = view3ViewController.m; sourceTree = "<group>"; };
+		443C823E16F6A67F00DE5D85 /* view3ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = view3ViewController.xib; sourceTree = "<group>"; };
+		443C824116F6A69900DE5D85 /* view4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view4ViewController.h; sourceTree = "<group>"; };
+		443C824216F6A69900DE5D85 /* view4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = view4ViewController.m; sourceTree = "<group>"; };
+		443C824316F6A69900DE5D85 /* view4ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = view4ViewController.xib; sourceTree = "<group>"; };
+		443C824616F6A6E000DE5D85 /* Quare4MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quare4MenuViewController.h; path = 4quareMenuController/Quare4MenuViewController.h; sourceTree = "<group>"; };
+		443C824716F6A6E000DE5D85 /* Quare4MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Quare4MenuViewController.m; path = 4quareMenuController/Quare4MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +105,7 @@
 		443C81F116F6A56800DE5D85 = {
 			isa = PBXGroup;
 			children = (
+				443C824916F6A6E800DE5D85 /* 4quareMenuViewController */,
 				443C820316F6A56800DE5D85 /* 4quareMenu */,
 				443C822116F6A56900DE5D85 /* 4quareMenuTests */,
 				443C81FC16F6A56800DE5D85 /* Frameworks */,
@@ -112,6 +136,18 @@
 		443C820316F6A56800DE5D85 /* 4quareMenu */ = {
 			isa = PBXGroup;
 			children = (
+				443C824116F6A69900DE5D85 /* view4ViewController.h */,
+				443C824216F6A69900DE5D85 /* view4ViewController.m */,
+				443C824316F6A69900DE5D85 /* view4ViewController.xib */,
+				443C823C16F6A67F00DE5D85 /* view3ViewController.h */,
+				443C823D16F6A67F00DE5D85 /* view3ViewController.m */,
+				443C823E16F6A67F00DE5D85 /* view3ViewController.xib */,
+				443C823716F6A66000DE5D85 /* view2ViewController.h */,
+				443C823816F6A66000DE5D85 /* view2ViewController.m */,
+				443C823916F6A66000DE5D85 /* view2ViewController.xib */,
+				443C823216F6A62E00DE5D85 /* view1ViewController.h */,
+				443C823316F6A62E00DE5D85 /* view1ViewController.m */,
+				443C823416F6A62E00DE5D85 /* view1ViewController.xib */,
 				443C820C16F6A56800DE5D85 /* AppDelegate.h */,
 				443C820D16F6A56800DE5D85 /* AppDelegate.m */,
 				443C820416F6A56800DE5D85 /* Supporting Files */,
@@ -150,6 +186,15 @@
 				443C822416F6A56900DE5D85 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		443C824916F6A6E800DE5D85 /* 4quareMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				443C824616F6A6E000DE5D85 /* Quare4MenuViewController.h */,
+				443C824716F6A6E000DE5D85 /* Quare4MenuViewController.m */,
+			);
+			name = 4quareMenuViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +272,10 @@
 				443C821016F6A56800DE5D85 /* Default.png in Resources */,
 				443C821216F6A56800DE5D85 /* Default@2x.png in Resources */,
 				443C821416F6A56800DE5D85 /* Default-568h@2x.png in Resources */,
+				443C823616F6A62E00DE5D85 /* view1ViewController.xib in Resources */,
+				443C823B16F6A66000DE5D85 /* view2ViewController.xib in Resources */,
+				443C824016F6A67F00DE5D85 /* view3ViewController.xib in Resources */,
+				443C824516F6A69900DE5D85 /* view4ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +312,11 @@
 			files = (
 				443C820A16F6A56800DE5D85 /* main.m in Sources */,
 				443C820E16F6A56800DE5D85 /* AppDelegate.m in Sources */,
+				443C823516F6A62E00DE5D85 /* view1ViewController.m in Sources */,
+				443C823A16F6A66000DE5D85 /* view2ViewController.m in Sources */,
+				443C823F16F6A67F00DE5D85 /* view3ViewController.m in Sources */,
+				443C824416F6A69900DE5D85 /* view4ViewController.m in Sources */,
+				443C824816F6A6E000DE5D85 /* Quare4MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +489,7 @@
 				443C822E16F6A56900DE5D85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		443C822F16F6A56900DE5D85 /* Build configuration list for PBXNativeTarget "4quareMenuTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +498,7 @@
 				443C823116F6A56900DE5D85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
