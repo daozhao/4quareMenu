@@ -29,7 +29,8 @@
     Quare4MenuViewController *q4mc = [[Quare4MenuViewController alloc]initWithTopLeft:vc1 TopRight:vc2 bottomLeft:vc3 bottomRight:vc4];
     
     
-    [self.window addSubview:q4mc.view];
+    self.window.rootViewController = q4mc;
+//    [self.window addSubview:q4mc.view];
     [self.window makeKeyAndVisible];
     return YES;
 }

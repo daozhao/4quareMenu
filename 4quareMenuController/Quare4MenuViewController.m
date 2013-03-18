@@ -15,6 +15,8 @@
 @property (nonatomic,strong) UIView *bottomLeftView;
 @property (nonatomic,strong) UIView *bottomRightView;
 
+//- (void)btnClick:(id) sender;
+
 @end
 
 @implementation Quare4MenuViewController
@@ -35,7 +37,33 @@
     self.bottomLeftController = bl;
     self.bottomRightController = br;
     
+    self->rotation = 0;
+    
     return self;
+}
+
+- (void)btnClickClick:(id) sender
+{
+    NSLog(@"btnClick");
+    
+    CGFloat r = self->rotation == 0.0f ? -20.0f : 0.0f;
+    [UIView animateWithDuration:0.3f
+                     animations:^{
+                         self.view.transform = CGAffineTransformMakeRotation(r);
+                         self.topLeftController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self.topRightController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self.bottomLeftController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self.bottomRightController.view.transform = CGAffineTransformMakeRotation(-r);
+                     }
+                     completion:^(BOOL finished) {
+                         self.view.transform = CGAffineTransformMakeRotation(r);
+                         self.topLeftController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self.topRightController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self.bottomLeftController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self.bottomRightController.view.transform = CGAffineTransformMakeRotation(-r);
+                         self->rotation = r;
+                     }];
+    
 }
 
 - (void) loadView
@@ -57,6 +85,14 @@
     [self.view addSubview:self.bottomLeftView];
     [self.view addSubview:self.bottomRightView];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn.frame = CGRectMake(150, 220, 40, 40);
+    [btn addTarget:self action:@selector(btnClickClick:) forControlEvents:UIControlEventTouchUpInside];
+//    btn.backgroundColor = [UIColor whiteColor];
+//    btn.titleLabel.text = @"click";
+    
+    [self.view addSubview:btn];
+    
 }
 
 - (void)viewDidLoad
@@ -65,14 +101,18 @@
 	// Do any additional setup after loading the view.
     
     [self.topLeftView addSubview:self.topLeftController.view];
+    self.topLeftController.view.userInteractionEnabled = NO;
     
     [self.topRightView addSubview:self.topRightController.view];
+    self.topRightController.view.userInteractionEnabled = NO;
     self.topRightController.view.frame = CGRectMake(-160, 0, 320, 460);
     
     [self.bottomLeftView addSubview:self.bottomLeftController.view];
+    self.bottomLeftController.view.userInteractionEnabled = NO;
     self.bottomLeftController.view.frame = CGRectMake(0, -230, 320, 460);
     
     [self.bottomRightView addSubview:self.bottomRightController.view];
+    self.bottomRightController.view.userInteractionEnabled = NO;
     self.bottomRightController.view.frame = CGRectMake(-160, -230, 320, 460);
 }
 
@@ -81,5 +121,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

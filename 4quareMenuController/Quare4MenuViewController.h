@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Quare4MenuViewController : UIViewController
+@interface Quare4MenuViewController : UIViewController{
 
+    CGFloat rotation;
+}
 
 @property (nonatomic,strong) UIViewController *topLeftController;
 @property (nonatomic,strong) UIViewController *topRightController;
