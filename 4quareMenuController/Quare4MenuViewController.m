@@ -15,6 +15,11 @@
 @property (nonatomic,strong) UIView *bottomLeftView;
 @property (nonatomic,strong) UIView *bottomRightView;
 
+@property (nonatomic) CGRect topLeftRect;
+@property (nonatomic) CGRect topRightRect;
+@property (nonatomic) CGRect bottomLeftRect;
+@property (nonatomic) CGRect bottomRightRect;
+
 //- (void)btnClick:(id) sender;
 
 @end
@@ -46,30 +51,20 @@
 {
     NSLog(@"btnClick");
     
-    CGFloat r = self->rotation == 0.0f ? -20.0f : 0.0f;
-    CGFloat xPosition = self->rotation == 0.0f ? -40.0f : 40.0f;
-    CGFloat yPosition = self->rotation == 0.0f ? -80.0f : 80.0f;
-    __block CGRect rect;
-    rect = CGRectMake(0, 20, 320, 460);
-    rect =  0.0f == self->rotation ? CGRectOffset(rect, -40, -80) : rect;
+    CGFloat r = self->rotation == 0.0f ? DEGREES_TO_RADIANS(-45) : 0.0f;
     
     [UIView animateWithDuration:2.3f
                      animations:^{
                          self.view.transform = CGAffineTransformMakeRotation(r);
-                         self.view.frame = rect;
-                         
                          self.topLeftController.view.transform = CGAffineTransformMakeRotation(-r);
-                         
                          self.topRightController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomLeftController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomRightController.view.transform = CGAffineTransformMakeRotation(-r);
                      }
                      completion:^(BOOL finished) {
+                        
                          self.view.transform = CGAffineTransformMakeRotation(r);
-                         self.view.frame =  rect; //CGRectOffset(rect,xPosition, yPosition);
-                         
                          self.topLeftController.view.transform = CGAffineTransformMakeRotation(-r);
-                         
                          self.topRightController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomLeftController.view.transform = CGAffineTransformMakeRotation(-r);
                          self.bottomRightController.view.transform = CGAffineTransformMakeRotation(-r);
@@ -114,19 +109,23 @@
     
     [self.topLeftView addSubview:self.topLeftController.view];
     self.topLeftController.view.userInteractionEnabled = NO;
-    self.topLeftController.view.frame = CGRectMake(160, 230, 320, 460);
+    self.topLeftRect = CGRectMake(160, 230, 320, 460);
+    self.topLeftController.view.frame = self.topLeftRect; // CGRectMake(160, 230, 320, 460);
     
     [self.topRightView addSubview:self.topRightController.view];
     self.topRightController.view.userInteractionEnabled = NO;
-    self.topRightController.view.frame = CGRectMake(-160, 230, 320, 460);
+    self.topRightRect = CGRectMake(-160, 230, 320, 460);
+    self.topRightController.view.frame = self.topRightRect; // CGRectMake(-160, 230, 320, 460);
     
     [self.bottomLeftView addSubview:self.bottomLeftController.view];
     self.bottomLeftController.view.userInteractionEnabled = NO;
-    self.bottomLeftController.view.frame = CGRectMake(160, -230, 320, 460);
+    self.bottomLeftRect = CGRectMake(160, -230, 320, 460);
+    self.bottomLeftController.view.frame = self.bottomLeftRect; // CGRectMake(160, -230, 320, 460);
     
     [self.bottomRightView addSubview:self.bottomRightController.view];
     self.bottomRightController.view.userInteractionEnabled = NO;
-    self.bottomRightController.view.frame = CGRectMake(-160, -230, 320, 460);
+    self.bottomRightRect = CGRectMake(-160, -230, 320, 460);
+    self.bottomRightController.view.frame = self.bottomRightRect;  //CGRectMake(-160, -230, 320, 460);
 }
 
 - (void)didReceiveMemoryWarning
