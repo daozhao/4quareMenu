@@ -30,6 +30,7 @@
 		443C824416F6A69900DE5D85 /* view4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C824216F6A69900DE5D85 /* view4ViewController.m */; };
 		443C824516F6A69900DE5D85 /* view4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443C824316F6A69900DE5D85 /* view4ViewController.xib */; };
 		443C824816F6A6E000DE5D85 /* Quare4MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C824716F6A6E000DE5D85 /* Quare4MenuViewController.m */; };
+		4461C2E016F8436700196347 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4461C2DF16F8436700196347 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		443C824316F6A69900DE5D85 /* view4ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = view4ViewController.xib; sourceTree = "<group>"; };
 		443C824616F6A6E000DE5D85 /* Quare4MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quare4MenuViewController.h; path = 4quareMenuController/Quare4MenuViewController.h; sourceTree = "<group>"; };
 		443C824716F6A6E000DE5D85 /* Quare4MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Quare4MenuViewController.m; path = 4quareMenuController/Quare4MenuViewController.m; sourceTree = "<group>"; };
+		4461C2DF16F8436700196347 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4461C2E016F8436700196347 /* QuartzCore.framework in Frameworks */,
 				443C81FE16F6A56800DE5D85 /* UIKit.framework in Frameworks */,
 				443C820016F6A56800DE5D85 /* Foundation.framework in Frameworks */,
 				443C820216F6A56800DE5D85 /* CoreGraphics.framework in Frameworks */,
@@ -125,6 +128,7 @@
 		443C81FC16F6A56800DE5D85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4461C2DF16F8436700196347 /* QuartzCore.framework */,
 				443C81FD16F6A56800DE5D85 /* UIKit.framework */,
 				443C81FF16F6A56800DE5D85 /* Foundation.framework */,
 				443C820116F6A56800DE5D85 /* CoreGraphics.framework */,
