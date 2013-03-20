@@ -17,9 +17,9 @@
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0*M_PI)
 
 #define CENTERPOINT_OFFSET_X (-40.0f)
-#define CENTERPOINT_OFFSET_Y (-250.0f)
+#define CENTERPOINT_OFFSET_Y (-80.0f)
 
-#define DEFAUTROTATION (-45.0f)
+#define DEFAUTROTATION (-50.0f)
 
 @interface Quare4MenuViewController : UIViewController{
 
@@ -30,6 +30,7 @@
 @property (nonatomic,strong) UIViewController *topRightController;
 @property (nonatomic,strong) UIViewController *bottomLeftController;
 @property (nonatomic,strong) UIViewController *bottomRightController;
+@property (nonatomic,strong) UIViewController *currentController;
 @property (nonatomic,strong) UIView *layerView;
 
 

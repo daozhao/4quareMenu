@@ -48,57 +48,53 @@
     return self;
 }
 
-- (void)btnClickClick:(id) sender
-{
-    static int i = 0;
-    
-//    i = i++ ;
-    NSLog(@"btnClick %d",i++);
-//    [self rotation:(self->rotation == 0.0f ? -30:0) withAnimation:YES];
-    if ( 0 == i%4 ) {
-        [self rotationToTopLeft];
-    } else if ( 1 ==i %4 ) {
-        [self rotationToTopRight];
-    } else if ( 2 == i %4 ) {
-        [self rotationToBottomLeft];
-    } else {
-        [self rotationToBottomRight];
-    }
 
-}
 
 - (void)rotationToTopLeft
 {
-    [self rotation:90 withAnimation:YES];
+//    self.currentController = self.topLeftController;
+    [self rotation:180 withAnimation:YES completion:nil];
 }
 
 - (void)rotationToTopRight
 {
-    [self rotation:180 withAnimation:YES];
+//    self.currentController = self.topRightController;
+    [self rotation:90 withAnimation:YES completion:nil];
 }
 
 - (void)rotationToBottomLeft
 {
-    [self rotation:-90 withAnimation:YES];
+//    self.currentController = self.bottomLeftController;
+    RECTLOG(self.bottomLeftController.view.frame,@"bottomLeft Controller");
+    RECTLOG(self.bottomLeftRect,@"bottomLeftRect ");
+    RECTLOG(self.bottomLeftView.frame,@"bottomLeftVeiw ");
+    [self rotation:-90 withAnimation:YES completion:nil];
 }
 
 - (void)rotationToBottomRight
 {
-    [self rotation:0 withAnimation:YES];
+//    self.currentController = self.bottomRightController;
+    [self rotation:0 withAnimation:YES completion:^(BOOL finished) {
+        [self displayBottomRight];
+    }];
 }
 
-- (void)rotation:(CGFloat) degrees withAnimation:(BOOL) animation
+- (void)rotationToDefault
+{
+    [self rotation:DEFAUTROTATION withAnimation:YES completion:nil];
+}
+
+- (void)rotation:(CGFloat) degrees withAnimation:(BOOL) animation completion:(void (^)(BOOL finished))completion
 {
     
     CGFloat r = DEGREES_TO_RADIANS(degrees);
     if ( animation ){
-        [UIView animateWithDuration:3.3f
+        [UIView animateWithDuration:0.3f
                          animations:^{
                              [self rotation:r];
                          }
-                         completion:^(BOOL finished) {
-                             self->rotation = r;
-                         }];
+                         completion:completion
+                         ];
     } else {
         [self rotation:r];
         self->rotation = r;
@@ -184,9 +180,23 @@
     self.bottomRightController.view.frame = self.bottomRightRect;
     self.bottomRightController.view.layer.anchorPoint = CGPointMake(0.5f + (CENTERPOINT_OFFSET_X /width) , 0.5f + (CENTERPOINT_OFFSET_Y/height));
     
+    UITapGestureRecognizer *tapRecognizer;
+    
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTopLeft:)] ;
+    [self.topLeftView addGestureRecognizer:tapRecognizer];
+    
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTopRight:)] ;
+    [self.topRightView addGestureRecognizer:tapRecognizer];
+    
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBottomLeft:)] ;
+    [self.bottomLeftView addGestureRecognizer:tapRecognizer];
+    
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBottomRight:)] ;
+    [self.bottomRightView addGestureRecognizer:tapRecognizer];
+    
     self.layerView.center = CGPointMake(width/2+ CENTERPOINT_OFFSET_X,height/2+ CENTERPOINT_OFFSET_Y);
     
-    [self rotation:DEFAUTROTATION withAnimation:NO];
+    [self rotation:DEFAUTROTATION withAnimation:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -195,6 +205,145 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)handleTapTopLeft:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)     {
+        NSLog(@"Tap handleTapTopLeft");
+        [self rotationToTopLeft];
+    }
+}
 
+- (void)handleTapTopRight:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)     {
+        NSLog(@"Tap handleTapTopRight");
+        [self rotationToTopRight];
+    }
+}
+
+- (void)handleTapBottomLeft:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)     {
+        NSLog(@"Tap handleTapBottomLeft");
+        [self rotationToBottomLeft];
+    }
+}
+
+- (void)handleTapBottomRight:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)     {
+        NSLog(@"Tap handleTapBottomRight");
+        [self rotationToBottomRight];
+        
+    }
+}
+- (void)btnClickClick:(id) sender
+{
+//    [self displayBottomRight];
+    if ( self.currentController == self.bottomRightController){
+        [self closeBottomRight];
+    } else {
+//        [self displayBottomRight];
+    }
+    
+//    if ( self.currentController == self.bottomLeftController){
+//        [self closeBottomLeft];
+//    } else {
+//        [self displayBottomLeft];
+//    }
+    
+//    [self displayBottomLeft];
+    
+}
+
+-(void)displayBottomRight
+{
+    NSLog(@"display bottom Right");
+    [UIView animateWithDuration:3.3f
+                     animations:^{
+                         CGFloat width = self.view.frame.size.width;
+                         CGFloat height = self.view.frame.size.height;
+                         
+                         self.layerView.center = CGPointMake(0, 0);
+                         RECTLOG(self.bottomRightController.view.frame,@"bottomRight Controller");
+                         
+                         self.bottomRightController.view.frame = CGRectMake(0, 0, width, height);
+                         RECTLOG(self.bottomRightController.view.frame,@"bottomRight Controller after");
+                     }
+                     completion:^(BOOL finished) {
+                         self.currentController = self.bottomRightController;
+                         }];
+}
+
+-(void)closeBottomRight
+{
+    NSLog(@"close bottom right");
+    [UIView animateWithDuration:3.3f
+                     animations:^{
+                         CGFloat width = self.view.frame.size.width;
+                         CGFloat height = self.view.frame.size.height;
+                         
+                         self.layerView.center = CGPointMake(width/2+ CENTERPOINT_OFFSET_X,height/2+ CENTERPOINT_OFFSET_Y);
+                         RECTLOG(self.bottomRightController.view.frame,@"bottomRight Controller");
+                         
+                         self.bottomRightController.view.frame = CGRectOffset(self.bottomRightRect,- CENTERPOINT_OFFSET_X,-CENTERPOINT_OFFSET_Y);
+                         
+                         RECTLOG(self.bottomRightController.view.frame,@"bottomRight Controller after");
+                     }
+                     completion:^(BOOL finished) {
+                         self.currentController = nil;
+                         [self rotationToDefault];
+                         }];
+}
+-(void)displayBottomLeft
+{
+    NSLog(@"display bottom Right");
+    [UIView animateWithDuration:3.3f
+                     animations:^{
+                         CGFloat width = self.view.frame.size.width;
+                         CGFloat height = self.view.frame.size.height;
+                         
+                         RECTLOG(self.bottomLeftController.view.frame,@"bottomLeft Controller");
+                         RECTLOG(self.bottomLeftRect,@"bottomLeftRect ");
+                         RECTLOG(self.bottomLeftView.frame,@"bottomLeftVeiw ");
+                         
+                         CGFloat moveX = self.layerView.center.x;
+                         CGFloat moveY = self.layerView.center.y;
+                         NSLog(@"layerView center x:%.2f y:%.2f",moveX,moveY);
+                         
+                         CGRect rect = self.bottomLeftController.view.frame;
+//                         self.bottomLeftController.view.frame = CGRectOffset(rect,0-moveX,0-moveY);
+                         rect = CGRectOffset(rect,0-moveX,0-moveY);
+                         RECTLOG(rect, @"rect ");
+                         self.bottomLeftController.view.frame = CGRectOffset(rect,0-moveX,0-moveY);
+                         
+                         RECTLOG(self.bottomLeftController.view.frame,@"bottomRight Controller after");
+                         
+//                         self.layerView.center = CGPointMake(0, 0);
+                     }
+                     completion:^(BOOL finished) {
+                         self.currentController = self.bottomLeftController;
+                         }];
+}
+
+-(void)closeBottomLeft
+{
+    NSLog(@"close bottom right");
+    [UIView animateWithDuration:3.3f
+                     animations:^{
+                         CGFloat width = self.view.frame.size.width;
+                         CGFloat height = self.view.frame.size.height;
+                         
+                         self.layerView.center = CGPointMake(width/2+ CENTERPOINT_OFFSET_X,height/2+ CENTERPOINT_OFFSET_Y);
+                         RECTLOG(self.bottomLeftController.view.frame,@"bottomRight Controller");
+                         
+                         self.bottomLeftController.view.frame = CGRectOffset(self.bottomLeftRect, CENTERPOINT_OFFSET_X,CENTERPOINT_OFFSET_Y);
+                         
+                         RECTLOG(self.bottomLeftController.view.frame,@"bottomRight Controller after");
+                     }
+                     completion:^(BOOL finished) {
+                         self.currentController = nil;
+                         }];
+}
 
 @end
