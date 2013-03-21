@@ -28,8 +28,9 @@
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetRGBFillColor(context,   0.0, 0.0, 0.0, 0.7);
-    CGContextSetRGBStrokeColor(context, 0.6, 0.6, 0.6, 1.0);
+    CGContextSetRGBFillColor(context,   0.0, 0.0, 0.0, 0.35);
+//    CGContextSetRGBFillColor(context, 1, 1, 1, .6);
+//    CGContextSetRGBStrokeColor(context, 0.6, 0.6, 0.6, 1.0);
     
     CGRect clips[] = {rect};
     CGContextClipToRects(context, clips, sizeof(clips) / sizeof(clips[0]));
