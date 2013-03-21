@@ -23,6 +23,8 @@
 @property (nonatomic,strong) MaskView *maskViewbottomLeft;
 @property (nonatomic,strong) MaskView *maskViewbottomRight;
 
+@property (nonatomic,strong) UIButton *closeBtn;
+
 @property (nonatomic) CGRect topLeftRect;
 @property (nonatomic) CGRect topRightRect;
 @property (nonatomic) CGRect bottomLeftRect;
@@ -216,10 +218,10 @@
     
     self.layerView.center = CGPointMake(width/2+ CENTERPOINT_OFFSET_X,height/2+ CENTERPOINT_OFFSET_Y);
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame =CGRectMake((size*width - 40 )/2 , (height * size - 40)/2 , 40, 40);
-    [btn addTarget:self action:@selector(btnClickClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.layerView addSubview:btn];
+    self.closeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.closeBtn.frame =CGRectMake((size*width - 40 )/2 , (height * size - 40)/2 , 40, 40);
+    [self.closeBtn addTarget:self action:@selector(btnClickClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.layerView addSubview:self.closeBtn];
     
     [self rotation:DEFAUTROTATION withAnimation:NO completion:nil];
 }
@@ -319,13 +321,13 @@
                      }
                      completion:^(BOOL finished) {
                          if ( self.currentController == self.topLeftController)
-                             [self.layerView addSubview:self.maskViewTopLeft];
+                             [self.layerView insertSubview:self.maskViewTopLeft belowSubview:self.closeBtn];
                          else if ( self.currentController == self.topRightController)
-                             [self.layerView addSubview:self.maskViewTopRight];
+                             [self.layerView insertSubview:self.maskViewTopRight belowSubview:self.closeBtn];
                          else if ( self.currentController == self.bottomLeftController)
-                             [self.layerView addSubview:self.maskViewbottomLeft];
+                             [self.layerView insertSubview:self.maskViewbottomLeft belowSubview:self.closeBtn];
                          else if ( self.currentController == self.bottomRightController )
-                             [self.layerView addSubview:self.maskViewbottomRight];
+                             [self.layerView insertSubview:self.maskViewbottomRight belowSubview:self.closeBtn];
                          
                          
                          self.currentController = nil;
