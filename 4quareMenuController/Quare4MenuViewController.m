@@ -54,7 +54,8 @@
 {
 //    self.currentController = self.topLeftController;
     [self rotation:180 withAnimation:YES completion:^(BOOL finished) {
-        [self displayTopLeft];
+//        [self displayTopLeft];
+        [self displayViewController:self.topLeftController];
     }];
 }
 
@@ -62,7 +63,8 @@
 {
 //    self.currentController = self.topRightController;
     [self rotation:90 withAnimation:YES completion:^(BOOL finished){
-        [self displayTopRight];
+        [self displayViewController:self.topRightController];
+//        [self displayTopRight];
     }];
 }
 
@@ -73,7 +75,8 @@
 //    RECTLOG(self.bottomLeftRect,@"bottomLeftRect ");
 //    RECTLOG(self.bottomLeftView.frame,@"bottomLeftVeiw ");
     [self rotation:-90 withAnimation:YES completion:^(BOOL finished){
-        [self displayBottomLeft];
+        [self displayViewController:self.bottomLeftController];
+//        [self displayBottomLeft];
     }];
 }
 
@@ -81,7 +84,8 @@
 {
 //    self.currentController = self.bottomRightController;
     [self rotation:0 withAnimation:YES completion:^(BOOL finished) {
-        [self displayBottomRight];
+        [self displayViewController:self.bottomRightController];
+//        [self displayBottomRight];
     }];
 }
 
@@ -245,36 +249,14 @@
 }
 - (void)btnClickClick:(id) sender
 {
-//    [self displayBottomRight];
-    if ( self.currentController == self.bottomRightController){
-        [self closeBottomRight];
-        return;
-    }
-
-    if ( self.currentController == self.topRightController){
-        [self closeTopRight];
-        return;
-    }
-    
-    if ( self.currentController == self.topLeftController){
-        [self closeTopLeft];
-        return;
-    }
-    
-    if ( self.currentController == self.bottomLeftController){
-        [self closeBottomLeft];
-        return;
-    } else {
-//        [self displayBottomLeft];
-    }
-
-//    [self displayBottomLeft];
+    [self closeViewController];
     
 }
 
--(void)displayTopLeft
+-(void)displayViewController:(UIViewController *)viewController
 {
     NSLog(@"display top left");
+    self.currentController = viewController;
     [UIView animateWithDuration:0.3f
                      animations:^{
                          CGFloat moveX = self.layerView.center.x;
@@ -282,19 +264,25 @@
                          
                          self.layerView.center = CGPointMake(0, 0);
                          
+                         if ( self.currentController == self.topLeftController)
+                             self.topLeftController.view.center = CGPointMake(self.topLeftController.view.center.x - moveX,self.topLeftController.view.center.y - moveY);
+                         else if ( self.currentController == self.topRightController)
+                             self.topRightController.view.center = CGPointMake(self.topRightController.view.center.x + moveY,self.topRightController.view.center.y - moveX);
+                         else if ( self.currentController == self.bottomLeftController)
+                             self.bottomLeftController.view.center = CGPointMake(self.bottomLeftController.view.center.x - moveY,self.bottomLeftController.view.center.y + moveX);
+                         else if ( self.currentController == self.bottomRightController)
+                             self.bottomRightController.view.center = CGPointMake(moveX,moveY);
                          
-                         self.topLeftController.view.center = CGPointMake(self.topLeftController.view.center.x - moveX,self.topLeftController.view.center.y - moveY);
                          
                      }
                      completion:^(BOOL finished) {
-                         self.currentController = self.topLeftController;
-                         NSLog(@"bottomRightController finished view center x:%.2f y:%.2f",self.topLeftController.view.center.x,self.topLeftController.view.center.y);
                      }];
 }
 
--(void)closeTopLeft
+-(void)closeViewController
 {
     NSLog(@"close bottom right");
+    
     [UIView animateWithDuration:0.3f
                      animations:^{
                          CGFloat width = self.view.frame.size.width;
@@ -305,135 +293,19 @@
                          
                          self.layerView.center = CGPointMake(moveX,moveY);
                          
-                         self.topLeftController.view.center = CGPointMake(self.topLeftController.view.center.x + moveX,self.topLeftController.view.center.y + moveY);
+                         if ( self.currentController == self.topLeftController)
+                             self.topLeftController.view.center = CGPointMake(self.topLeftController.view.center.x + moveX,self.topLeftController.view.center.y + moveY);
+                         else if ( self.currentController == self.topRightController)
+                             self.topRightController.view.center = CGPointMake(self.topRightController.view.center.x - moveY,self.topRightController.view.center.y + moveX);
+                         else if ( self.currentController == self.bottomLeftController)
+                             self.bottomLeftController.view.center = CGPointMake(self.bottomLeftController.view.center.x + moveY,self.bottomLeftController.view.center.y - moveX);
+                         else if ( self.currentController == self.bottomRightController)
+                             self.bottomRightController.view.center = CGPointMake(self.bottomRightController.view.center.x - moveX,self.bottomRightController.view.center.y - moveY);
                      }
                      completion:^(BOOL finished) {
                          self.currentController = nil;
                          [self rotationToDefault];
                          }];
-}
-
--(void)displayTopRight
-{
-    NSLog(@"display top Right");
-    [UIView animateWithDuration:0.3f
-                     animations:^{
-                         
-                         CGFloat moveX = self.layerView.center.x;
-                         CGFloat moveY = self.layerView.center.y;
-                         
-                         self.topRightController.view.center = CGPointMake(self.topRightController.view.center.x + moveY,self.topRightController.view.center.y - moveX);
-                         
-                         
-                         RECTLOG(self.topRightController.view.frame,@"bottomRight Controller after");
-                         
-                         self.layerView.center = CGPointMake(0, 0);
-                     }
-                     completion:^(BOOL finished) {
-                         self.currentController = self.topRightController;
-                     }];
-}
-
--(void)closeTopRight
-{
-    NSLog(@"close bottom right");
-    [UIView animateWithDuration:0.3f
-                     animations:^{
-                         CGFloat width = self.view.frame.size.width;
-                         CGFloat height = self.view.frame.size.height;
-                         
-                         CGFloat moveX = width/2+ CENTERPOINT_OFFSET_X;
-                         CGFloat moveY = height/2+ CENTERPOINT_OFFSET_Y;
-                         
-                         self.layerView.center = CGPointMake(moveX,moveY);
-                         
-                         self.topRightController.view.center = CGPointMake(self.topRightController.view.center.x - moveY,self.topRightController.view.center.y + moveX);
-                     }
-                     completion:^(BOOL finished) {
-                         self.currentController = nil;
-                         [self rotationToDefault];
-                         }];
-}
-
--(void)displayBottomRight
-{
-    NSLog(@"display bottom Right");
-    [UIView animateWithDuration:0.3f
-                     animations:^{
-                         CGFloat moveX = self.layerView.center.x;
-                         CGFloat moveY = self.layerView.center.y;
-                         
-                         self.layerView.center = CGPointMake(0, 0);
-                         
-                         self.bottomRightController.view.center = CGPointMake(moveX,moveY);
-                         
-                     }
-                     completion:^(BOOL finished) {
-                         self.currentController = self.bottomRightController;
-                     }];
-}
-
--(void)closeBottomRight
-{
-    NSLog(@"close bottom right");
-    [UIView animateWithDuration:0.3f
-                     animations:^{
-                         CGFloat width = self.view.frame.size.width;
-                         CGFloat height = self.view.frame.size.height;
-                         
-                         CGFloat moveX = width/2+ CENTERPOINT_OFFSET_X;
-                         CGFloat moveY = height/2+ CENTERPOINT_OFFSET_Y;
-                         
-                         self.layerView.center = CGPointMake(moveX,moveY);
-                         RECTLOG(self.bottomRightController.view.frame,@"bottomRight Controller");
-                         
-                         self.bottomRightController.view.center = CGPointMake(self.bottomRightController.view.center.x - moveX,self.bottomRightController.view.center.y - moveY);
-                         
-                     }
-                     completion:^(BOOL finished) {
-                         self.currentController = nil;
-                         [self rotationToDefault];
-                         }];
-}
-
--(void)displayBottomLeft
-{
-    NSLog(@"display bottom Right");
-    [UIView animateWithDuration:0.3f
-                     animations:^{
-                         
-                         CGFloat moveX = self.layerView.center.x;
-                         CGFloat moveY = self.layerView.center.y;
-                         
-                         self.bottomLeftController.view.center = CGPointMake(self.bottomLeftController.view.center.x - moveY,self.bottomLeftController.view.center.y + moveX);
-                         
-                         self.layerView.center = CGPointMake(0, 0);
-                     }
-                     completion:^(BOOL finished) {
-                         self.currentController = self.bottomLeftController;
-                         }];
-}
-
--(void)closeBottomLeft
-{
-    NSLog(@"close bottom right");
-    [UIView animateWithDuration:0.3f
-                     animations:^{
-                         CGFloat width = self.view.frame.size.width;
-                         CGFloat height = self.view.frame.size.height;
-                         
-                         CGFloat moveX = width/2+ CENTERPOINT_OFFSET_X;
-                         CGFloat moveY = height/2+ CENTERPOINT_OFFSET_Y;
-                         
-                         self.layerView.center = CGPointMake(moveX,moveY);
-                         
-                         self.bottomLeftController.view.center = CGPointMake(self.bottomLeftController.view.center.x + moveY,self.bottomLeftController.view.center.y - moveX);
-                         
-                     }
-                     completion:^(BOOL finished) {
-                         self.currentController = nil;
-                         [self rotationToDefault];
-                     }];
 }
 
 @end
