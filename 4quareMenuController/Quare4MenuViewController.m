@@ -7,6 +7,7 @@
 //
 
 #import "Quare4MenuViewController.h"
+#import "MaskView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface Quare4MenuViewController ()
@@ -15,6 +16,12 @@
 @property (nonatomic,strong) UIView *topRightView;
 @property (nonatomic,strong) UIView *bottomLeftView;
 @property (nonatomic,strong) UIView *bottomRightView;
+
+
+@property (nonatomic,strong) MaskView *maskViewTopLeft;
+@property (nonatomic,strong) MaskView *maskViewTopRight;
+@property (nonatomic,strong) MaskView *maskViewbottomLeft;
+@property (nonatomic,strong) MaskView *maskViewbottomRight;
 
 @property (nonatomic) CGRect topLeftRect;
 @property (nonatomic) CGRect topRightRect;
@@ -43,8 +50,6 @@
     self.bottomLeftController = bl;
     self.bottomRightController = br;
     
-//    self->rotation = 0;
-    
     return self;
 }
 
@@ -52,40 +57,33 @@
 
 - (void)rotationToTopLeft
 {
-//    self.currentController = self.topLeftController;
     [self rotation:180 withAnimation:YES completion:^(BOOL finished) {
-//        [self displayTopLeft];
+        [self.maskViewTopLeft removeFromSuperview];
         [self displayViewController:self.topLeftController];
     }];
 }
 
 - (void)rotationToTopRight
 {
-//    self.currentController = self.topRightController;
     [self rotation:90 withAnimation:YES completion:^(BOOL finished){
+        [self.maskViewTopRight removeFromSuperview];
         [self displayViewController:self.topRightController];
-//        [self displayTopRight];
     }];
 }
 
 - (void)rotationToBottomLeft
 {
-//    self.currentController = self.bottomLeftController;
-//    RECTLOG(self.bottomLeftController.view.frame,@"bottomLeft Controller");
-//    RECTLOG(self.bottomLeftRect,@"bottomLeftRect ");
-//    RECTLOG(self.bottomLeftView.frame,@"bottomLeftVeiw ");
     [self rotation:-90 withAnimation:YES completion:^(BOOL finished){
+        [self.maskViewbottomLeft removeFromSuperview];
         [self displayViewController:self.bottomLeftController];
-//        [self displayBottomLeft];
     }];
 }
 
 - (void)rotationToBottomRight
 {
-//    self.currentController = self.bottomRightController;
     [self rotation:0 withAnimation:YES completion:^(BOOL finished) {
+        [self.maskViewbottomRight removeFromSuperview];
         [self displayViewController:self.bottomRightController];
-//        [self displayBottomRight];
     }];
 }
 
@@ -107,7 +105,6 @@
                          ];
     } else {
         [self rotation:r];
-//        self->rotation = r;
     }
     
 }
@@ -138,23 +135,26 @@
     
     self.topLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width * size/2 , height * size/2)];
     self.topLeftView.clipsToBounds = YES;
+    self.maskViewTopLeft = [[MaskView alloc]initWithFrame:self.topLeftView.frame];
+    
     self.topRightView = [[UIView alloc]initWithFrame:CGRectMake(width * size/2, 0, width * size/2, height * size/2)];
     self.topRightView.clipsToBounds = YES;
+    self.maskViewTopRight = [[MaskView alloc]initWithFrame:self.topRightView.frame];
+    
     self.bottomLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, height * size/2 , width * size/2, height * size/2 )];
     self.bottomLeftView.clipsToBounds = YES;
+    self.maskViewbottomLeft = [[MaskView alloc]initWithFrame:self.bottomLeftView.frame];
+    
     self.bottomRightView = [[UIView alloc]initWithFrame:CGRectMake(width * size/2, height * size/2, width * size/2, height * size/2)];
     self.bottomRightView.clipsToBounds = YES;
+    self.maskViewbottomRight = [[MaskView alloc]initWithFrame:self.bottomRightView.frame];
     
     [self.layerView addSubview:self.topLeftView];
     [self.layerView addSubview:self.topRightView];
     [self.layerView addSubview:self.bottomLeftView];
     [self.layerView addSubview:self.bottomRightView];
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame =CGRectMake((size*width - 40 )/2 , (height * size - 40)/2 , 40, 40);
-    [btn addTarget:self action:@selector(btnClickClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.layerView addSubview:btn];
     [self.view addSubview:self.layerView];
     
 }
@@ -165,46 +165,61 @@
 	// Do any additional setup after loading the view.
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
+    NSInteger size = 4;
     
     [self.topLeftView addSubview:self.topLeftController.view];
-    self.topLeftController.view.userInteractionEnabled = NO;
+//    self.topLeftController.view.userInteractionEnabled = NO;
     self.topLeftRect = CGRectMake(self.topLeftView.frame.size.width - width/2, self.topLeftView.frame.size.height-height/2, width, height);
     self.topLeftController.view.frame = self.topLeftRect;
     self.topLeftController.view.layer.anchorPoint = CGPointMake(0.5f + (CENTERPOINT_OFFSET_X /width) , 0.5f + (CENTERPOINT_OFFSET_Y/height));
     
     [self.topRightView addSubview:self.topRightController.view];
-    self.topRightController.view.userInteractionEnabled = NO;
+//    self.topRightController.view.userInteractionEnabled = NO;
     self.topRightRect = CGRectMake(- width/2, self.topRightView.frame.size.height - height/2, width, height);
     self.topRightController.view.frame = self.topRightRect;
     self.topRightController.view.layer.anchorPoint = CGPointMake(0.5f + (CENTERPOINT_OFFSET_X /width) , 0.5f + (CENTERPOINT_OFFSET_Y/height));
     
     [self.bottomLeftView addSubview:self.bottomLeftController.view];
-    self.bottomLeftController.view.userInteractionEnabled = NO;
+//    self.bottomLeftController.view.userInteractionEnabled = NO;
     self.bottomLeftRect = CGRectMake(self.topRightView.frame.size.width - width/2, -height/2, width, height);
     self.bottomLeftController.view.frame = self.bottomLeftRect;
     self.bottomLeftController.view.layer.anchorPoint = CGPointMake(0.5f + (CENTERPOINT_OFFSET_X /width) , 0.5f + (CENTERPOINT_OFFSET_Y/height));
     
     [self.bottomRightView addSubview:self.bottomRightController.view];
-    self.bottomRightController.view.userInteractionEnabled = NO;
+//    self.bottomRightController.view.userInteractionEnabled = NO;
     self.bottomRightRect = CGRectMake(-width/2, -height/2, width, height);
     self.bottomRightController.view.frame = self.bottomRightRect;
     self.bottomRightController.view.layer.anchorPoint = CGPointMake(0.5f + (CENTERPOINT_OFFSET_X /width) , 0.5f + (CENTERPOINT_OFFSET_Y/height));
+    
+    [self.layerView addSubview:self.maskViewTopLeft];
+    [self.layerView addSubview:self.maskViewTopRight];
+    [self.layerView addSubview:self.maskViewbottomLeft];
+    [self.layerView addSubview:self.maskViewbottomRight];
     
     UITapGestureRecognizer *tapRecognizer;
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTopLeft:)] ;
     [self.topLeftView addGestureRecognizer:tapRecognizer];
+    [self.maskViewTopLeft addGestureRecognizer:tapRecognizer];
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTopRight:)] ;
     [self.topRightView addGestureRecognizer:tapRecognizer];
+    [self.maskViewTopRight addGestureRecognizer:tapRecognizer];
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBottomLeft:)] ;
     [self.bottomLeftView addGestureRecognizer:tapRecognizer];
+    [self.maskViewbottomLeft addGestureRecognizer:tapRecognizer];
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBottomRight:)] ;
     [self.bottomRightView addGestureRecognizer:tapRecognizer];
+    [self.maskViewbottomRight addGestureRecognizer:tapRecognizer];
     
     self.layerView.center = CGPointMake(width/2+ CENTERPOINT_OFFSET_X,height/2+ CENTERPOINT_OFFSET_Y);
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn.frame =CGRectMake((size*width - 40 )/2 , (height * size - 40)/2 , 40, 40);
+    [btn addTarget:self action:@selector(btnClickClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.layerView addSubview:btn];
     
     [self rotation:DEFAUTROTATION withAnimation:NO completion:nil];
 }
@@ -303,6 +318,16 @@
                              self.bottomRightController.view.center = CGPointMake(self.bottomRightController.view.center.x - moveX,self.bottomRightController.view.center.y - moveY);
                      }
                      completion:^(BOOL finished) {
+                         if ( self.currentController == self.topLeftController)
+                             [self.layerView addSubview:self.maskViewTopLeft];
+                         else if ( self.currentController == self.topRightController)
+                             [self.layerView addSubview:self.maskViewTopRight];
+                         else if ( self.currentController == self.bottomLeftController)
+                             [self.layerView addSubview:self.maskViewbottomLeft];
+                         else if ( self.currentController == self.bottomRightController )
+                             [self.layerView addSubview:self.maskViewbottomRight];
+                         
+                         
                          self.currentController = nil;
                          [self rotationToDefault];
                          }];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		440D3C0316FAF7AC00535AC4 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D3C0216FAF7AC00535AC4 /* MaskView.m */; };
 		443C81FE16F6A56800DE5D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443C81FD16F6A56800DE5D85 /* UIKit.framework */; };
 		443C820016F6A56800DE5D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443C81FF16F6A56800DE5D85 /* Foundation.framework */; };
 		443C820216F6A56800DE5D85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443C820116F6A56800DE5D85 /* CoreGraphics.framework */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		440D3C0116FAF7AC00535AC4 /* MaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskView.h; path = 4quareMenuController/MaskView.h; sourceTree = "<group>"; };
+		440D3C0216FAF7AC00535AC4 /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaskView.m; path = 4quareMenuController/MaskView.m; sourceTree = "<group>"; };
 		443C81FA16F6A56800DE5D85 /* 4quareMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4quareMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C81FD16F6A56800DE5D85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		443C81FF16F6A56800DE5D85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -197,6 +200,8 @@
 			children = (
 				443C824616F6A6E000DE5D85 /* Quare4MenuViewController.h */,
 				443C824716F6A6E000DE5D85 /* Quare4MenuViewController.m */,
+				440D3C0116FAF7AC00535AC4 /* MaskView.h */,
+				440D3C0216FAF7AC00535AC4 /* MaskView.m */,
 			);
 			name = 4quareMenuViewController;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				443C823F16F6A67F00DE5D85 /* view3ViewController.m in Sources */,
 				443C824416F6A69900DE5D85 /* view4ViewController.m in Sources */,
 				443C824816F6A6E000DE5D85 /* Quare4MenuViewController.m in Sources */,
+				440D3C0316FAF7AC00535AC4 /* MaskView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
