@@ -43,7 +43,7 @@
     self.bottomLeftController = bl;
     self.bottomRightController = br;
     
-    self->rotation = 0;
+//    self->rotation = 0;
     
     return self;
 }
@@ -107,7 +107,7 @@
                          ];
     } else {
         [self rotation:r];
-        self->rotation = r;
+//        self->rotation = r;
     }
     
 }
@@ -271,7 +271,7 @@
                          else if ( self.currentController == self.bottomLeftController)
                              self.bottomLeftController.view.center = CGPointMake(self.bottomLeftController.view.center.x - moveY,self.bottomLeftController.view.center.y + moveX);
                          else if ( self.currentController == self.bottomRightController)
-                             self.bottomRightController.view.center = CGPointMake(moveX,moveY);
+                             self.bottomRightController.view.center = CGPointMake(self.bottomRightController.view.center.x + moveX,self.bottomRightController.view.center.y + moveY); 
                          
                          
                      }

@@ -23,7 +23,7 @@
 
 @interface Quare4MenuViewController : UIViewController{
 
-    CGFloat rotation;
+//    CGFloat rotation;
 }
 
 @property (nonatomic,strong) UIViewController *topLeftController;
