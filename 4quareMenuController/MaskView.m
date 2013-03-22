@@ -28,14 +28,19 @@
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetRGBFillColor(context,   0.0, 0.0, 0.0, 0.35);
-//    CGContextSetRGBFillColor(context, 1, 1, 1, .6);
+//    CGContextSetRGBFillColor(context,   0.0, 0.0, 0.0, 0.35);
+    CGContextSetRGBFillColor(context, 1, 1, 1, .60);
+    CGContextSetRGBStrokeColor(context, 1, 1, 1, .80);
 //    CGContextSetRGBStrokeColor(context, 0.6, 0.6, 0.6, 1.0);
     
     CGRect clips[] = {rect};
     CGContextClipToRects(context, clips, sizeof(clips) / sizeof(clips[0]));
     
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineWidth(context, 3.0);
+    
     CGContextFillRect(context, self.bounds);
+    CGContextStrokeRect(context, self.bounds);
     UIGraphicsEndImageContext();
 }
 

@@ -21,6 +21,18 @@
 
 #define DEFAUTROTATION (-50.0f)
 
+#define BUTTON_IMAGE_OF_CENTER @"centerImage.png"
+
+#define BUTTON_IMAGE_OF_TOPLEFT     @"topLeft_n.png"
+#define BUTTON_IMAGE_OF_TOPRIGHT    @"topRight_n.png"
+#define BUTTON_IMAGE_OF_BOTTOMLEFT  @"bottomLeft_n.png"
+#define BUTTON_IMAGE_OF_BOTTOMRIGHT @"bottomRight_n.png"
+
+#define BUTTON_IMAGE_OF_TOPLEFT_H     @"topLeft_h.png"
+#define BUTTON_IMAGE_OF_TOPRIGHT_H    @"topRight_h.png"
+#define BUTTON_IMAGE_OF_BOTTOMLEFT_H  @"bottomLeft_h.png"
+#define BUTTON_IMAGE_OF_BOTTOMRIGHT_H @"bottomRight_h.png"
+
 @interface Quare4MenuViewController : UIViewController{
 
 //    CGFloat rotation;
@@ -32,6 +44,11 @@
 @property (nonatomic,strong) UIViewController *bottomRightController;
 @property (nonatomic,strong) UIViewController *currentController;
 @property (nonatomic,strong) UIView *layerView;
+
+@property (nonatomic,strong) UIButton *topLeftBtn;
+@property (nonatomic,strong) UIButton *topRightBtn;
+@property (nonatomic,strong) UIButton *bottomLeftBtn;
+@property (nonatomic,strong) UIButton *bottomRightBtn;
 
 
 
