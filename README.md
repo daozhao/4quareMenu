@@ -1,7 +1,7 @@
 
 #4quaremenu
 
-Created by **Daozhao Chen**
+Created by **[Daozhao Chen](http://daozhao.goflytoday.com)**
 
 **4quaremenu** is as menu controller
 
@@ -9,7 +9,7 @@ Created by **Daozhao Chen**
 
 Just add !uare4MenuViewController.h/m MaskView.h/m into your project. 
 
-support IOS 6.X ,not support IOS 5.
+support IOS 6.X ,xcode 4.6,not support IOS 5.
 
 
 #Demo
