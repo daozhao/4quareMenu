@@ -7,7 +7,7 @@ Created by **[Daozhao Chen](http://daozhao.goflytoday.com)**
 
 #Installation
 
-Just add !uare4MenuViewController.h/m MaskView.h/m into your project. 
+Just add quare4MenuViewController.h/m MaskView.h/m into your project. 
 
 support IOS 6.X ,xcode 4.6,not support IOS 5.
 
